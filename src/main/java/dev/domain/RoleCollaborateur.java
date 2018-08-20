@@ -10,11 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class RoleCollaborateur {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+public class RoleCollaborateur extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "collaborateur_id")
@@ -29,14 +25,6 @@ public class RoleCollaborateur {
 	public RoleCollaborateur(Collaborateur collaborateur, Role role) {
 		this.collaborateur = collaborateur;
 		this.role = role;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Role getRole() {
