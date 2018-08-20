@@ -1,5 +1,8 @@
 package dev.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class NatureMission extends BaseEntity {
 
 	private String libelle;
