@@ -1,10 +1,10 @@
 package dev;
 
-import dev.domain.Collegue;
+import dev.domain.Collaborateur;
 import dev.domain.Role;
-import dev.domain.RoleCollegue;
+import dev.domain.RoleCollaborateur;
 import dev.domain.Version;
-import dev.repository.CollegueRepo;
+import dev.repository.CollaborateurRepo;
 import dev.repository.VersionRepo;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -24,9 +24,9 @@ public class StartupListener {
     private String appVersion;
     private VersionRepo versionRepo;
     private PasswordEncoder passwordEncoder;
-    private CollegueRepo collegueRepo;
+    private CollaborateurRepo collegueRepo;
 
-    public StartupListener(@Value("${app.version}") String appVersion, VersionRepo versionRepo, PasswordEncoder passwordEncoder, CollegueRepo collegueRepo) {
+    public StartupListener(@Value("${app.version}") String appVersion, VersionRepo versionRepo, PasswordEncoder passwordEncoder, CollaborateurRepo collegueRepo) {
         this.appVersion = appVersion;
         this.versionRepo = versionRepo;
         this.passwordEncoder = passwordEncoder;
@@ -39,20 +39,20 @@ public class StartupListener {
 
         // Création de deux utilisateurs
 
-        Collegue col1 = new Collegue();
+        Collaborateur col1 = new Collaborateur();
         col1.setNom("Admin");
         col1.setPrenom("DEV");
         col1.setEmail("admin@dev.fr");
         col1.setMotDePasse(passwordEncoder.encode("superpass"));
-        col1.setRoles(Arrays.asList(new RoleCollegue(col1, Role.ROLE_ADMINISTRATEUR), new RoleCollegue(col1, Role.ROLE_UTILISATEUR)));
+        col1.setRoles(Arrays.asList(new RoleCollaborateur(col1, Role.ROLE_ADMINISTRATEUR), new RoleCollaborateur(col1, Role.ROLE_UTILISATEUR)));
         this.collegueRepo.save(col1);
 
-        Collegue col2 = new Collegue();
+        Collaborateur col2 = new Collaborateur();
         col2.setNom("User");
         col2.setPrenom("DEV");
         col2.setEmail("user@dev.fr");
         col2.setMotDePasse(passwordEncoder.encode("superpass"));
-        col2.setRoles(Arrays.asList(new RoleCollegue(col2, Role.ROLE_UTILISATEUR)));
+        col2.setRoles(Arrays.asList(new RoleCollaborateur(col2, Role.ROLE_UTILISATEUR)));
         this.collegueRepo.save(col2);
     }
 
