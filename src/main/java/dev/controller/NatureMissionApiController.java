@@ -26,7 +26,7 @@ public class NatureMissionApiController {
 	/**
 	 * Liste toutes les NatureMission
 	 * 
-	 * @return ResponseEntity dont le coprs est constitué de la liste de toutes
+	 * @return ResponseEntity dont le corps est constitué de la liste de toutes
 	 *         les NatureMission
 	 */
 	@GetMapping
