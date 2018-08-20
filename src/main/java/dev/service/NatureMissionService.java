@@ -2,6 +2,8 @@ package dev.service;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import dev.domain.NatureMission;
 import dev.repository.NatureMissionRepo;
 
@@ -14,18 +16,22 @@ public class NatureMissionService {
 		this.natureMissionRepo = natureMissionRepo;
 	}
 
+	@Transactional
 	public List<NatureMission> list() {
 		return (List<NatureMission>) natureMissionRepo.findAll();
 	}
 
-	public void add(NatureMission natureMissionToAdd) {
+	@Transactional
+	public void save(NatureMission natureMissionToAdd) {
 		natureMissionRepo.save(natureMissionToAdd);
 	}
 
-	public NatureMission getById(Long id) {
+	@Transactional
+	public NatureMission findById(Long id) {
 		return natureMissionRepo.findById(id).orElse(null);
 	}
 
+	@Transactional
 	public void update(NatureMission updatedNatureMission) {
 		if (this.exist(updatedNatureMission.getId())) {
 			natureMissionRepo.save(updatedNatureMission);
@@ -34,16 +40,14 @@ public class NatureMissionService {
 		}
 	}
 
+	@Transactional
 	public void delete(NatureMission natureMissionToRemove) {
 		natureMissionRepo.delete(natureMissionToRemove);
 	}
 
-	public boolean exist(Long examenId) {
-		return natureMissionRepo.findById(examenId).isPresent();
-	}
-
-	public void deleteById(Long id) {
-		natureMissionRepo.delete(getById(id));
+	@Transactional
+	public boolean exist(Long natureMissionId) {
+		return natureMissionRepo.findById(natureMissionId).isPresent();
 	}
 
 }
