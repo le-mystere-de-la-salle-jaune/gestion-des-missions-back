@@ -62,14 +62,12 @@ public class StartupListener {
 		this.collegueRepo.save(col2);
 
 		NatureMission nat1 = new NatureMission();
-		nat1.setLibelle("Yolo");
 		nat1.setFacturee(true);
+		nat1.setLibelle("Nathan");
+		nat1.setPourcentage(52);
+		nat1.setTjm(5);
 		nat1.setVersementPrime(true);
-		nat1.setPourcentage(23);
-		nat1.setTjm(42);
-		System.out.println(nat1);
 		this.natureMissionRepo.save(nat1);
-
 	}
 
 }
