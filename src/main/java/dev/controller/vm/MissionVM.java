@@ -21,7 +21,7 @@ public class MissionVM extends BaseVM {
 		this.dateDebut = mission.getDateDebut().format(formatter);
 		this.datefin = mission.getDatefin().format(formatter);
 
-		this.villeDepart = mission.getVilleDepart();
+		this.villeDepart = "YOYOYOYOYOY";
 		this.villeArrivee = mission.getVilleArrivee();
 		this.transport = mission.getTransport().getLibelle();
 		this.montantPrime = mission.getMontantPrime();

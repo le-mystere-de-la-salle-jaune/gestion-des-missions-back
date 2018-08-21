@@ -24,12 +24,6 @@ public class RoleCollaborateur extends BaseEntity {
 		this.role = role;
 	}
 
-	// RoleCollaborateur n'a pas de VM, on renvoit donc directement l'entité
-	@Override
-	public RoleCollaborateur toVM() {
-		return this;
-	}
-
 	public Role getRole() {
 		return role;
 	}

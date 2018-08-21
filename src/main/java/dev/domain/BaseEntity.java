@@ -12,8 +12,6 @@ public abstract class BaseEntity implements Base {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	public abstract Base toVM();
-
 	public Long getId() {
 		return id;
 	}

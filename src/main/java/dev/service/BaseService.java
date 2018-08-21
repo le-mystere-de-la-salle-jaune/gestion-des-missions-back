@@ -1,7 +1,6 @@
 package dev.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,13 +17,12 @@ public abstract class BaseService<T extends BaseEntity> {
 
 	@Transactional
 	public List<T> list() {
-		List<T> list = (List<T>) this.repository.findAll();
-		return (List<T>) list.stream().map(t -> t.toVM()).collect(Collectors.toList());
+		return (List<T>) this.repository.findAll();
 	}
 
 	@Transactional
 	public T findById(Long id) {
-		return (T) this.repository.findById(id).orElse(null).toVM();
+		return this.repository.findById(id).orElse(null);
 	}
 
 	@Transactional
@@ -52,8 +50,8 @@ public abstract class BaseService<T extends BaseEntity> {
 	}
 
 	@Transactional
-	public boolean exist(T t) {
-		return this.repository.findById(t.getId()).isPresent();
+	public boolean exist(BaseEntity entity) {
+		return this.repository.findById(entity.getId()).isPresent();
 	}
 
 	@Transactional

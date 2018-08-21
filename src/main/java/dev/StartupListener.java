@@ -101,8 +101,8 @@ public class StartupListener {
 		mis2.setMontantPrime(500d);
 		mis2.setStatut(Statut.VALIDEE);
 		mis2.setTransport(Transport.AVION);
-		mis2.setVilleDepart("Madrid");
-		mis2.setVilleArrivee("Paris");
+		mis2.setVilleDepart("Grenade");
+		mis2.setVilleArrivee("Bagdad");
 		this.missionRepo.save(mis2);
 	}
 

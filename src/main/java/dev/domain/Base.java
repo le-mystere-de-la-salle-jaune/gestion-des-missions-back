@@ -10,4 +10,7 @@ package dev.domain;
  */
 public interface Base {
 
+	default Base toVM() {
+		return this;
+	}
 }
