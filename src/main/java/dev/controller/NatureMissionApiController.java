@@ -23,6 +23,21 @@ public class NatureMissionApiController {
 
 	/**
 	 * Permet de créer une nouvelle NatureMission
+	 * Liste toutes les NatureMission
+	 * 
+	 * @return ResponseEntity dont le corps est constitué de la liste de toutes
+	 *         les NatureMission
+	 */
+	@GetMapping
+	public ResponseEntity<List<NatureMission>> findAll() {
+		List<NatureMission> listeNatureMission = this.natureMissionService.list();
+
+		// HttpStatus est une énumération regroupant les codes HTTP usuels
+		return ResponseEntity.status(HttpStatus.OK).body(listeNatureMission);
+	}
+
+	/**
+	 * Permet de lister la NatureMission dont l'ID est spécifié dans l'URL
 	 * 
 	 * @param natureMission:
 	 *            NatureMission à créer
