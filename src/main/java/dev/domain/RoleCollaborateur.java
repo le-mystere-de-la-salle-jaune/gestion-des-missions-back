@@ -3,14 +3,11 @@ package dev.domain;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class RoleCollaborateur extends BaseEntity{
+public class RoleCollaborateur extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "collaborateur_id")
@@ -25,6 +22,12 @@ public class RoleCollaborateur extends BaseEntity{
 	public RoleCollaborateur(Collaborateur collaborateur, Role role) {
 		this.collaborateur = collaborateur;
 		this.role = role;
+	}
+
+	// RoleCollaborateur n'a pas de VM, on renvoit donc directement l'entité
+	@Override
+	public RoleCollaborateur toVM() {
+		return this;
 	}
 
 	public Role getRole() {
@@ -42,4 +45,5 @@ public class RoleCollaborateur extends BaseEntity{
 	public void setCollegue(Collaborateur collaborateur) {
 		this.collaborateur = collaborateur;
 	}
+
 }

@@ -6,11 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Base {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	public abstract Base toVM();
 
 	public Long getId() {
 		return id;
@@ -19,4 +21,5 @@ public abstract class BaseEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 }

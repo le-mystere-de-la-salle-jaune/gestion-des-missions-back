@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import dev.controller.vm.CollaborateurVM;
+
 @Entity
 public class Collaborateur extends BaseEntity {
 
@@ -19,6 +21,11 @@ public class Collaborateur extends BaseEntity {
 
 	@OneToMany(mappedBy = "collaborateur", cascade = CascadeType.PERSIST)
 	private List<RoleCollaborateur> roles;
+
+	@Override
+	public CollaborateurVM toVM() {
+		return new CollaborateurVM(this);
+	}
 
 	public String getEmail() {
 		return email;
@@ -59,4 +66,5 @@ public class Collaborateur extends BaseEntity {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
 }

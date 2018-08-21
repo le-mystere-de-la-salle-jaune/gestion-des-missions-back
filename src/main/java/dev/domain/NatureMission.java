@@ -33,6 +33,12 @@ public class NatureMission extends BaseEntity {
 		this.pourcentage = 0;
 	}
 
+	// NatureMission n'a pas de VM, on renvoit donc directement l'entité
+	@Override
+	public Base toVM() {
+		return this;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}

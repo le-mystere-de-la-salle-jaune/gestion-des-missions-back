@@ -1,5 +1,6 @@
 package dev;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -9,11 +10,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import dev.domain.Collaborateur;
+import dev.domain.Mission;
 import dev.domain.NatureMission;
 import dev.domain.Role;
 import dev.domain.RoleCollaborateur;
+import dev.domain.Statut;
+import dev.domain.Transport;
 import dev.domain.Version;
 import dev.repository.CollaborateurRepo;
+import dev.repository.MissionRepo;
 import dev.repository.NatureMissionRepo;
 import dev.repository.VersionRepo;
 
@@ -28,14 +33,17 @@ public class StartupListener {
 	private PasswordEncoder passwordEncoder;
 	private CollaborateurRepo collegueRepo;
 	private NatureMissionRepo natureMissionRepo;
+	private MissionRepo missionRepo;
 
 	public StartupListener(@Value("${app.version}") String appVersion, VersionRepo versionRepo,
-			PasswordEncoder passwordEncoder, CollaborateurRepo collegueRepo, NatureMissionRepo natureMissionRepo) {
+			PasswordEncoder passwordEncoder, CollaborateurRepo collegueRepo, NatureMissionRepo natureMissionRepo,
+			MissionRepo missionRepo) {
 		this.appVersion = appVersion;
 		this.versionRepo = versionRepo;
 		this.passwordEncoder = passwordEncoder;
 		this.collegueRepo = collegueRepo;
 		this.natureMissionRepo = natureMissionRepo;
+		this.missionRepo = missionRepo;
 	}
 
 	@EventListener(ContextRefreshedEvent.class)
@@ -68,6 +76,34 @@ public class StartupListener {
 		nat1.setTjm(5);
 		nat1.setVersementPrime(true);
 		this.natureMissionRepo.save(nat1);
+
+		NatureMission nat2 = new NatureMission();
+		nat2.setFacturee(true);
+		nat2.setLibelle("Yolo");
+		nat2.setPourcentage(65);
+		nat2.setTjm(32);
+		nat2.setVersementPrime(true);
+		this.natureMissionRepo.save(nat2);
+
+		Mission mis1 = new Mission();
+		mis1.setDateDebut(LocalDateTime.now());
+		mis1.setDatefin(LocalDateTime.of(2018, 12, 1, 15, 30));
+		mis1.setMontantPrime(500d);
+		mis1.setStatut(Statut.VALIDEE);
+		mis1.setTransport(Transport.AVION);
+		mis1.setVilleDepart("Madrid");
+		mis1.setVilleArrivee("Paris");
+		this.missionRepo.save(mis1);
+
+		Mission mis2 = new Mission();
+		mis2.setDateDebut(LocalDateTime.now());
+		mis2.setDatefin(LocalDateTime.of(2018, 12, 1, 15, 30));
+		mis2.setMontantPrime(500d);
+		mis2.setStatut(Statut.VALIDEE);
+		mis2.setTransport(Transport.AVION);
+		mis2.setVilleDepart("Madrid");
+		mis2.setVilleArrivee("Paris");
+		this.missionRepo.save(mis2);
 	}
 
 }
