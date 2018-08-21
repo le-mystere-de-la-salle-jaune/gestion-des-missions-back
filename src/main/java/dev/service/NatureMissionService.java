@@ -57,4 +57,9 @@ public class NatureMissionService {
 		return natureMissionRepo.findById(natureMissionId).isPresent();
 	}
 
+	@Transactional
+	public boolean exist(NatureMission natureMission) {
+		return natureMissionRepo.findById(natureMission.getId()).isPresent();
+	}
+
 }
