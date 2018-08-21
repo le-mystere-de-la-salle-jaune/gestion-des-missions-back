@@ -1,5 +1,8 @@
 package dev.domain;
 
+import javax.persistence.Entity;
+
+@Entity
 public class NatureMission extends BaseEntity {
 
 	private String libelle;
@@ -7,6 +10,10 @@ public class NatureMission extends BaseEntity {
 	private boolean versementPrime;
 	private double tjm;
 	private double pourcentage;
+
+	public NatureMission() {
+		super();
+	}
 
 	public NatureMission(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage) {
 		super();

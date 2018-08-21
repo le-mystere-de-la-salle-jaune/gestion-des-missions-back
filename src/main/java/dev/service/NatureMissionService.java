@@ -2,9 +2,12 @@ package dev.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import dev.domain.NatureMission;
 import dev.repository.NatureMissionRepo;
 
+@Service
 public class NatureMissionService {
 
 	private NatureMissionRepo natureMissionRepo;
