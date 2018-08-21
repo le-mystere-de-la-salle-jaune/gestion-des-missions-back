@@ -48,6 +48,11 @@ public class NatureMissionService {
 	}
 
 	@Transactional
+	public void deleteById(Long id) {
+		natureMissionRepo.delete(this.findById(id));
+	}
+
+	@Transactional
 	public boolean exist(Long natureMissionId) {
 		return natureMissionRepo.findById(natureMissionId).isPresent();
 	}
