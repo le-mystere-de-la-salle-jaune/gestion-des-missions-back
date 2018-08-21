@@ -27,16 +27,15 @@ public class StartupListener {
 	private VersionRepo versionRepo;
 	private PasswordEncoder passwordEncoder;
 	private CollaborateurRepo collegueRepo;
-	private NatureMissionRepo natureMissionrepo;
+	private NatureMissionRepo natureMissionRepo;
 
 	public StartupListener(@Value("${app.version}") String appVersion, VersionRepo versionRepo,
-			PasswordEncoder passwordEncoder, CollaborateurRepo collegueRepo, NatureMissionRepo natureMissionrepo) {
+			PasswordEncoder passwordEncoder, CollaborateurRepo collegueRepo, NatureMissionRepo natureMissionRepo) {
 		this.appVersion = appVersion;
 		this.versionRepo = versionRepo;
 		this.passwordEncoder = passwordEncoder;
 		this.collegueRepo = collegueRepo;
-		this.natureMissionrepo = natureMissionrepo;
-
+		this.natureMissionRepo = natureMissionRepo;
 	}
 
 	@EventListener(ContextRefreshedEvent.class)
@@ -68,7 +67,7 @@ public class StartupListener {
 		nat1.setPourcentage(52);
 		nat1.setTjm(5);
 		nat1.setVersementPrime(true);
-		this.natureMissionrepo.save(nat1);
+		this.natureMissionRepo.save(nat1);
 	}
 
 }
