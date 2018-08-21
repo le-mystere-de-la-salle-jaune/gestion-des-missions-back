@@ -27,7 +27,6 @@ public class NatureMissionApiController {
 	}
 
 	/**
-	 * 
 	 * Liste toutes les NatureMission
 	 * 
 	 * @return ResponseEntity dont le corps est constitué de la liste de toutes
@@ -42,8 +41,8 @@ public class NatureMissionApiController {
 	}
 
 	/**
+	 * Liste la nature de mission dont l'ID est spécifiée dans l'URL
 	 * 
-	 *
 	 * @return ResponseEntity dont le corps est la NatureMission recherchée
 	 */
 	@GetMapping("/{id}")
@@ -65,6 +64,14 @@ public class NatureMissionApiController {
 		return ResponseEntity.status(HttpStatus.OK).body(natureMission.getId());
 	}
 
+	/**
+	 * Permet de supprimer une nature de mission
+	 * 
+	 * @param id:
+	 *            ID de la nature de mission à supprimer
+	 * @return ResponseEntity dont le corps est un message informant réussite ou
+	 *         non de la suppression
+	 */
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> supprimer(@PathVariable Long id) {
 		if (natureMissionService.exist(id)) {
@@ -76,6 +83,17 @@ public class NatureMissionApiController {
 		}
 	}
 
+	/**
+	 * Permet de modifier une nature de mission existante
+	 * 
+	 * @param newNatureMission:
+	 *            nouvelle nature de mission dont les attributs vont être
+	 *            utilisés pout modifier ceux la nature de mission à modifier
+	 * @param id:
+	 *            ID de la nature de mission à modifier
+	 * @return ResponseEntity dont le corps est un message informant réussite ou
+	 *         non de la modification
+	 */
 	@PostMapping("/{id}")
 	public ResponseEntity<String> update(@RequestBody NatureMission newNatureMission, @PathVariable Long id) {
 		if (this.natureMissionService.exist(id)) {
