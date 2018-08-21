@@ -11,6 +11,10 @@ public class NatureMission extends BaseEntity {
 	private double tjm;
 	private double pourcentage;
 
+	public NatureMission() {
+		super();
+	}
+
 	public NatureMission(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage) {
 		super();
 		this.libelle = libelle;
