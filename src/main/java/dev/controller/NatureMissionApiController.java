@@ -68,7 +68,8 @@ public class NatureMissionApiController {
 	public ResponseEntity<?> supprimer(@PathVariable Long id) {
 		if (natureMissionService.exist(id)) {
 			natureMissionService.deleteById(id);
-			return ResponseEntity.status(HttpStatus.OK).body("Nature de mission correctement supprimée");
+			return ResponseEntity.status(HttpStatus.OK)
+					.body("La nature de mission dont l'id est " + id + " a été supprimée");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cette nature de mission n'existe pas");
 		}
