@@ -10,16 +10,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import dev.domain.Collaborateur;
+import dev.domain.LigneDeFrais;
 import dev.domain.Mission;
 import dev.domain.NatureMission;
+import dev.domain.NoteDeFrais;
 import dev.domain.Role;
 import dev.domain.RoleCollaborateur;
 import dev.domain.Statut;
 import dev.domain.Transport;
 import dev.domain.Version;
 import dev.repository.CollaborateurRepo;
+import dev.repository.LigneDeFraisRepo;
 import dev.repository.MissionRepo;
 import dev.repository.NatureMissionRepo;
+import dev.repository.NoteDeFraisRepo;
 import dev.repository.VersionRepo;
 
 /**
@@ -34,14 +38,19 @@ public class StartupListener {
 	private CollaborateurRepo collaborateurRepo;
 	private NatureMissionRepo natureMissionRepo;
 	private MissionRepo missionRepo;
+	private LigneDeFraisRepo ligneDeFraisRepo;
+	private NoteDeFraisRepo noteDeFraisRepo;
 
 	public StartupListener(@Value("${app.version}") String appVersion, VersionRepo versionRepo,
-			PasswordEncoder passwordEncoder, CollaborateurRepo collegueRepo, NatureMissionRepo natureMissionRepo,
-			MissionRepo missionRepo) {
+			PasswordEncoder passwordEncoder, CollaborateurRepo collaborateurRepo, NatureMissionRepo natureMissionRepo,
+			LigneDeFraisRepo ligneDeFraisRepo, NoteDeFraisRepo noteDeFraisRepo, MissionRepo missionRepo) {
 		this.appVersion = appVersion;
 		this.versionRepo = versionRepo;
 		this.passwordEncoder = passwordEncoder;
-		this.collaborateurRepo = collegueRepo;
+		this.collaborateurRepo = collaborateurRepo;
+		this.natureMissionRepo = natureMissionRepo;
+		this.ligneDeFraisRepo = ligneDeFraisRepo;
+		this.noteDeFraisRepo = noteDeFraisRepo;
 		this.natureMissionRepo = natureMissionRepo;
 		this.missionRepo = missionRepo;
 	}
@@ -112,6 +121,30 @@ public class StartupListener {
 		mis2.setVilleDepart("Grenade");
 		mis2.setVilleArrivee("Bagdad");
 		this.missionRepo.save(mis2);
+
+		// Création d'une note de frais comportant deux lignes de frais
+		LigneDeFrais lf1 = new LigneDeFrais();
+		lf1.setDate(LocalDate.of(2018, 8, 21));
+		lf1.setMontant(320d);
+		lf1.setNature("Hôtel Machin");
+
+		LigneDeFrais lf2 = new LigneDeFrais();
+		lf2.setDate(LocalDate.of(2018, 8, 20));
+		lf2.setMontant(105.80d);
+		lf2.setNature("Location véhicule");
+
+		NoteDeFrais nf1 = new NoteDeFrais();
+		nf1.setDateCreation(LocalDate.of(2018, 8, 21));
+		nf1.setMontantTotal(325.80d);
+
+		this.noteDeFraisRepo.save(nf1);
+
+		lf1.setNoteDeFrais(nf1);
+		lf2.setNoteDeFrais(nf1);
+
+		this.ligneDeFraisRepo.save(lf1);
+		this.ligneDeFraisRepo.save(lf2);
+
 	}
 
 }
