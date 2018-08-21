@@ -27,6 +27,7 @@ public class NatureMissionApiController {
 	}
 
 	/**
+	 * 
 	 * Liste toutes les NatureMission
 	 * 
 	 * @return ResponseEntity dont le corps est constitué de la liste de toutes
@@ -65,13 +66,26 @@ public class NatureMissionApiController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> supprimer(@PathVariable Long id) {
+	public ResponseEntity<String> supprimer(@PathVariable Long id) {
 		if (natureMissionService.exist(id)) {
 			natureMissionService.deleteById(id);
 			return ResponseEntity.status(HttpStatus.OK)
 					.body("La nature de mission dont l'id est " + id + " a été supprimée");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cette nature de mission n'existe pas");
+		}
+	}
+
+	@PostMapping("/{id}")
+	public ResponseEntity<String> update(@RequestBody NatureMission newNatureMission, @PathVariable Long id) {
+		if (this.natureMissionService.exist(id)) {
+			newNatureMission.setId(id);
+			this.natureMissionService.save(newNatureMission);
+			return ResponseEntity.status(HttpStatus.OK)
+					.body("Nature de mission dont l'id est " + newNatureMission.getId() + " a été modifiée.");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aucune nature de mission est en base avec l'id "
+					+ newNatureMission.getId() + ". Aucune modification n'a été effectuée.");
 		}
 	}
 }
