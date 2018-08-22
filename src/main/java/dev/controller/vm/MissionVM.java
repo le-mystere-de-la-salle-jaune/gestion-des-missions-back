@@ -2,9 +2,10 @@ package dev.controller.vm;
 
 import java.time.format.DateTimeFormatter;
 
+import dev.domain.BaseEntity;
 import dev.domain.Mission;
 
-public class MissionVM extends BaseVM {
+public class MissionVM extends BaseEntity {
 	private String statut;
 	private String dateDebut;
 	private String datefin;
@@ -14,17 +15,22 @@ public class MissionVM extends BaseVM {
 	private Double montantPrime;
 
 	public MissionVM(Mission mission) {
-		super(mission.getId());
+		super();
 		this.statut = mission.getStatut().toString();
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		this.dateDebut = mission.getDateDebut().format(formatter);
 		this.datefin = mission.getDatefin().format(formatter);
 
-		this.villeDepart = "YOYOYOYOYOY";
+		this.villeDepart = mission.getVilleDepart();
 		this.villeArrivee = mission.getVilleArrivee();
 		this.transport = mission.getTransport().getLibelle();
 		this.montantPrime = mission.getMontantPrime();
+	}
+
+	@Override
+	public BaseEntity toVM() {
+		return this;
 	}
 
 	public String getStatut() {

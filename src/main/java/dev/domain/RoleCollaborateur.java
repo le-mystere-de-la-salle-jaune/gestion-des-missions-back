@@ -19,6 +19,11 @@ public class RoleCollaborateur extends BaseEntity {
 	public RoleCollaborateur() {
 	}
 
+	@Override
+	public BaseEntity toVM() {
+		return this;
+	}
+
 	public RoleCollaborateur(Collaborateur collaborateur, Role role) {
 		this.collaborateur = collaborateur;
 		this.role = role;

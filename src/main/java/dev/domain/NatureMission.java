@@ -33,6 +33,11 @@ public class NatureMission extends BaseEntity {
 		this.pourcentage = 0;
 	}
 
+	@Override
+	public BaseEntity toVM() {
+		return this;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}
