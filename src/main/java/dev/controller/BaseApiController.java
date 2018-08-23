@@ -54,11 +54,11 @@ public class BaseApiController<T extends BaseEntity, S extends BaseVM> {
 	public ResponseEntity<String> delete(@PathVariable Long id) {
 		if (this.service.exist(id)) {
 			this.service.delete(id);
-			return ResponseEntity.status(HttpStatus.OK).body("L'objet de type " + this.entityClass.getSimpleName()
-					+ " dont l'id est " + id + " a été supprimée");
+			return ResponseEntity.status(HttpStatus.OK).body(
+					"L'objet de type " + this.entityClass.getSimpleName() + " dont l'id est " + id + " a été supprimé");
 		} else {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Aucun objet de type "
-					+ this.entityClass.getSimpleName() + " n'a été trouvé en base. Rien n'a été supprimé");
+					+ this.entityClass.getSimpleName() + " n'a été trouvé en base. Rien n'a été supprimé.");
 		}
 	}
 
@@ -68,10 +68,10 @@ public class BaseApiController<T extends BaseEntity, S extends BaseVM> {
 			s.setId(id);
 			this.service.update((T) this.vmUtils.transformIntoEntity(s));
 			return ResponseEntity.status(HttpStatus.OK).body(
-					"L'objet de type " + this.entityClass.getSimpleName() + "dont l'id est " + id + " a été modifiée.");
+					"L'objet de type " + this.entityClass.getSimpleName() + "dont l'id est " + id + " a été modifié.");
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
-					.body("Aucun Objet de type " + this.entityClass.getSimpleName() + "est en base avec l'id " + id
+					.body("Aucun Objet de type " + this.entityClass.getSimpleName() + "trouvé avec l'id " + id
 							+ ". Aucune modification n'a été effectuée.");
 		}
 	}

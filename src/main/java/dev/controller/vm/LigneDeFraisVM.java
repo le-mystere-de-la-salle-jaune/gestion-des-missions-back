@@ -26,7 +26,8 @@ public class LigneDeFraisVM extends BaseVM {
 	}
 
 	public LigneDeFraisVM(LigneDeFrais lf) {
-		super(lf.getId());
+		super();
+		this.id = lf.getId();
 		this.date = lf.getDate();
 		this.nature = lf.getNature();
 		this.montant = lf.getMontant();
@@ -91,6 +92,17 @@ public class LigneDeFraisVM extends BaseVM {
 	 */
 	public void setNoteDeFraisId(Long noteDeFraisId) {
 		this.noteDeFraisId = noteDeFraisId;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "LigneDeFraisVM [date=" + date + ", nature=" + nature + ", montant=" + montant + ", noteDeFraisId="
+				+ noteDeFraisId + "]";
 	}
 
 }

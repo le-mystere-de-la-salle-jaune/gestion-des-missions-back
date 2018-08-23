@@ -19,7 +19,8 @@ public class NoteDeFraisVM extends BaseVM {
 	}
 
 	public NoteDeFraisVM(NoteDeFrais nf) {
-		super(nf.getId());
+		super();
+		this.id = nf.getId();
 		this.dateCreation = nf.getDateCreation();
 		this.montantTotal = nf.getMontantTotal();
 	}
@@ -52,6 +53,16 @@ public class NoteDeFraisVM extends BaseVM {
 	 */
 	public void setMontantTotal(Double montantTotal) {
 		this.montantTotal = montantTotal;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "NoteDeFraisVM [dateCreation=" + dateCreation + ", montantTotal=" + montantTotal + "]";
 	}
 
 }
