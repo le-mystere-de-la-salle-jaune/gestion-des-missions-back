@@ -1,11 +1,8 @@
-package dev.domain;
+package dev.controller.vm;
 
-import javax.persistence.Entity;
+import dev.domain.NatureMission;
 
-import dev.controller.vm.NatureMissionVM;
-
-@Entity
-public class NatureMission extends BaseEntity {
+public class NatureMissionVM extends BaseVM {
 
 	private String libelle;
 	private boolean facturee;
@@ -13,11 +10,11 @@ public class NatureMission extends BaseEntity {
 	private double tjm;
 	private double pourcentage;
 
-	public NatureMission() {
+	public NatureMissionVM() {
 		super();
 	}
 
-	public NatureMission(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage) {
+	public NatureMissionVM(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage) {
 		super();
 		this.libelle = libelle;
 		this.facturee = facturee;
@@ -26,7 +23,7 @@ public class NatureMission extends BaseEntity {
 		this.pourcentage = pourcentage;
 	}
 
-	public NatureMission(String libelle) {
+	public NatureMissionVM(String libelle) {
 		super();
 		this.libelle = libelle;
 		this.facturee = false;
@@ -35,9 +32,9 @@ public class NatureMission extends BaseEntity {
 		this.pourcentage = 0;
 	}
 
-	public NatureMission(NatureMissionVM natureMissionVM) {
-		this(natureMissionVM.getLibelle(), natureMissionVM.isFacturee(), natureMissionVM.isVersementPrime(),
-				natureMissionVM.getTjm(), natureMissionVM.getPourcentage());
+	public NatureMissionVM(NatureMission natureMission) {
+		this(natureMission.getLibelle(), natureMission.isFacturee(), natureMission.isVersementPrime(),
+				natureMission.getTjm(), natureMission.getPourcentage());
 	}
 
 	public String getLibelle() {

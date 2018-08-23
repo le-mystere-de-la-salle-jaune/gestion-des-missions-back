@@ -3,14 +3,11 @@ package dev.domain;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class RoleCollaborateur extends BaseEntity{
+public class RoleCollaborateur extends BaseEntity {
 
 	@ManyToOne
 	@JoinColumn(name = "collaborateur_id")
@@ -35,11 +32,12 @@ public class RoleCollaborateur extends BaseEntity{
 		this.role = role;
 	}
 
-	public Collaborateur getCollegue() {
+	public Collaborateur getCollaborateur() {
 		return collaborateur;
 	}
 
-	public void setCollegue(Collaborateur collaborateur) {
+	public void setCollaborateur(Collaborateur collaborateur) {
 		this.collaborateur = collaborateur;
 	}
+
 }

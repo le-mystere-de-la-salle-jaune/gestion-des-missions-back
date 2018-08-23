@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import dev.controller.vm.CollaborateurVM;
+
 @Entity
 public class Collaborateur extends BaseEntity {
 
@@ -19,6 +21,17 @@ public class Collaborateur extends BaseEntity {
 
 	@OneToMany(mappedBy = "collaborateur", cascade = CascadeType.PERSIST)
 	private List<RoleCollaborateur> roles;
+
+	public Collaborateur() {
+		super();
+	}
+
+	public Collaborateur(CollaborateurVM colabVM) {
+		this.nom = colabVM.getNom();
+		this.prenom = colabVM.getPrenom();
+		this.email = colabVM.getEmail();
+		this.motDePasse = "superpass";
+	}
 
 	public String getEmail() {
 		return email;
@@ -59,4 +72,5 @@ public class Collaborateur extends BaseEntity {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+
 }
