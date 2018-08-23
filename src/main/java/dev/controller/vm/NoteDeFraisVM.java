@@ -4,11 +4,19 @@ import java.time.LocalDate;
 
 import dev.domain.NoteDeFrais;
 
+/**
+ * Structure modélisant une note de frais servant à communiquer avec l'extérieur
+ * (WEB API).
+ */
 public class NoteDeFraisVM extends BaseVM {
 
 	private LocalDate dateCreation;
 
 	private Double montantTotal;
+
+	public NoteDeFraisVM() {
+
+	}
 
 	public NoteDeFraisVM(NoteDeFrais nf) {
 		super(nf.getId());

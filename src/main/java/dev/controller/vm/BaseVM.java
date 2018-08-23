@@ -4,6 +4,10 @@ public class BaseVM {
 
 	private Long id;
 
+	public BaseVM() {
+
+	}
+
 	public BaseVM(Long id) {
 		this.id = id;
 	}
