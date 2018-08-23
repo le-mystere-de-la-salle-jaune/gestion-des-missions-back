@@ -7,6 +7,10 @@ public class BaseVM {
 	public BaseVM() {
 	}
 
+	public BaseVM() {
+
+	}
+
 	public BaseVM(Long id) {
 		this.id = id;
 	}

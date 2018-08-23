@@ -84,4 +84,32 @@ public class NoteDeFraisApiController {
 		}
 	}
 
+	/**
+	 * Permet de modifier une note de frais existante
+	 *
+	 * @param noteDeFraisVM:
+	 *            view model de note de frais dont les attributs vont être
+	 *            utilisés pout modifier ceux de la note de frais à modifier
+	 * @param id:
+	 *            ID de la note de frais à modifier
+	 * @return ResponseEntity dont le corps est un message informant réussite ou
+	 *         non de la modification
+	 */
+	@PostMapping("/{id}")
+	public ResponseEntity<String> update(@RequestBody NoteDeFraisVM noteDeFraisVM, @PathVariable Long id) {
+		if (this.noteDeFraisService.exist(id)) {
+			NoteDeFrais noteDeFrais = noteDeFraisService.findById(noteDeFraisVM.getId());
+			noteDeFrais.setDateCreation(noteDeFraisVM.getDateCreation());
+			noteDeFrais.setMontantTotal(noteDeFraisVM.getMontantTotal());
+
+			noteDeFraisService.update(noteDeFrais);
+
+			return ResponseEntity.status(HttpStatus.OK)
+					.body("La note de frais dont l'id est " + noteDeFraisVM.getId() + " a été modifiée.");
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aucune note de frais trouvée avec l'id "
+					+ noteDeFraisVM.getId() + ". Aucune modification n'a été effectuée.");
+		}
+	}
+
 }

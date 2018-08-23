@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import dev.controller.vm.LigneDeFraisVM;
 import dev.domain.LigneDeFrais;
 import dev.service.LigneDeFraisService;
+import dev.service.NoteDeFraisService;
 import dev.service.vm.LigneDeFraisServiceVM;
 
 @RestController
@@ -24,10 +25,13 @@ public class LigneDeFraisApiController {
 	private LigneDeFraisService ligneDeFraisService;
 	private LigneDeFraisServiceVM ligneDeFraisServiceVM;
 
-	public LigneDeFraisApiController(LigneDeFraisService ligneDeFraisService,
+	private NoteDeFraisService noteDeFraisService;
+
+	public LigneDeFraisApiController(LigneDeFraisService ligneDeFraisService, NoteDeFraisService noteDeFraisService,
 			LigneDeFraisServiceVM ligneDeFraisServiceVM) {
 		super();
 		this.ligneDeFraisService = ligneDeFraisService;
+		this.noteDeFraisService = noteDeFraisService;
 		this.ligneDeFraisServiceVM = ligneDeFraisServiceVM;
 	}
 
@@ -88,24 +92,30 @@ public class LigneDeFraisApiController {
 	/**
 	 * Permet de modifier une ligne de frais existante
 	 *
-	 * @param newLignedeFrais:
-	 *            nouvelle ligne de frais dont les attributs vont être utilisés
-	 *            pout modifier ceux de la ligne de frais à modifier
+	 * @param ligneDeFraisVM:
+	 *            view model de ligne de frais dont les attributs vont être
+	 *            utilisés pout modifier ceux de la ligne de frais à modifier
 	 * @param id:
 	 *            ID de la ligne de frais à modifier
 	 * @return ResponseEntity dont le corps est un message informant réussite ou
 	 *         non de la modification
 	 */
 	@PostMapping("/{id}")
-	public ResponseEntity<String> update(@RequestBody LigneDeFrais newLigneDeFrais, @PathVariable Long id) {
+	public ResponseEntity<String> update(@RequestBody LigneDeFraisVM ligneDeFraisVM, @PathVariable Long id) {
 		if (this.ligneDeFraisService.exist(id)) {
-			newLigneDeFrais.setId(id);
-			this.ligneDeFraisService.update(newLigneDeFrais);
+			LigneDeFrais ligneDeFrais = ligneDeFraisService.findById(ligneDeFraisVM.getId());
+			ligneDeFrais.setDate(ligneDeFraisVM.getDate());
+			ligneDeFrais.setMontant(ligneDeFraisVM.getMontant());
+			ligneDeFrais.setNature(ligneDeFraisVM.getNature());
+			ligneDeFrais.setNoteDeFrais(noteDeFraisService.findById(ligneDeFraisVM.getNoteDeFraisId()));
+
+			ligneDeFraisService.update(ligneDeFrais);
+
 			return ResponseEntity.status(HttpStatus.OK)
-					.body("La ligne de frais dont l'id est " + newLigneDeFrais.getId() + " a été modifiée.");
+					.body("La ligne de frais dont l'id est " + ligneDeFraisVM.getId() + " a été modifiée.");
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Aucune ligne de frais trouvée avec l'id "
-					+ newLigneDeFrais.getId() + ". Aucune modification n'a été effectuée.");
+					+ ligneDeFraisVM.getId() + ". Aucune modification n'a été effectuée.");
 		}
 	}
 

@@ -2,8 +2,14 @@ package dev.controller.vm;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import dev.domain.LigneDeFrais;
 
+/**
+ * Structure modélisant une ligne de frais servant à communiquer avec
+ * l'extérieur (WEB API).
+ */
 public class LigneDeFraisVM extends BaseVM {
 
 	private LocalDate date;
@@ -12,7 +18,12 @@ public class LigneDeFraisVM extends BaseVM {
 
 	private Double montant;
 
+	@JsonProperty("note_de_frais_id")
 	private Long noteDeFraisId;
+
+	public LigneDeFraisVM() {
+
+	}
 
 	public LigneDeFraisVM(LigneDeFrais lf) {
 		super(lf.getId());
