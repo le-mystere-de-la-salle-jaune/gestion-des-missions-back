@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import dev.domain.BaseEntity;
 import dev.domain.Collaborateur;
 import dev.domain.Role;
 
@@ -12,7 +11,7 @@ import dev.domain.Role;
  * Structure modèlisant un collègue servant à communiquer avec l'extérieur (WEB
  * API).
  */
-public class CollaborateurVM extends BaseEntity {
+public class CollaborateurVM extends BaseVM {
 
 	private String email;
 	private String nom;
@@ -21,15 +20,11 @@ public class CollaborateurVM extends BaseEntity {
 
 	public CollaborateurVM(Collaborateur col) {
 		super();
+		this.setId(col.getId());
 		this.email = col.getEmail();
 		this.nom = col.getNom();
 		this.prenom = col.getPrenom();
 		this.roles = col.getRoles().stream().map(roleCollegue -> roleCollegue.getRole()).collect(Collectors.toList());
-	}
-
-	@Override
-	public BaseEntity toVM() {
-		return this;
 	}
 
 	public String getEmail() {

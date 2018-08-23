@@ -2,35 +2,42 @@ package dev.controller.vm;
 
 import java.time.format.DateTimeFormatter;
 
-import dev.domain.BaseEntity;
 import dev.domain.Mission;
 
-public class MissionVM extends BaseEntity {
+public class MissionVM extends BaseVM {
 	private String statut;
 	private String dateDebut;
-	private String datefin;
+	private String dateFin;
 	private String villeDepart;
 	private String villeArrivee;
 	private String transport;
 	private Double montantPrime;
 
+	public MissionVM() {
+	}
+
 	public MissionVM(Mission mission) {
 		super();
-		this.statut = mission.getStatut().toString();
+		this.setId(mission.getId());
+		this.statut = mission.getStatut().name();
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 		this.dateDebut = mission.getDateDebut().format(formatter);
-		this.datefin = mission.getDatefin().format(formatter);
+		this.dateFin = mission.getDateFin().format(formatter);
 
 		this.villeDepart = mission.getVilleDepart();
 		this.villeArrivee = mission.getVilleArrivee();
-		this.transport = mission.getTransport().getLibelle();
+		this.transport = mission.getTransport().name();
 		this.montantPrime = mission.getMontantPrime();
 	}
 
 	@Override
-	public BaseEntity toVM() {
-		return this;
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("{id: " + this.id + ", statut: " + this.statut + ",\ndateDebut: " + this.dateDebut + ", dateFin: "
+				+ this.dateFin + ",\nvilleDepart: " + this.villeDepart + ", villeArrivée: " + this.villeArrivee
+				+ ",\nTransport: " + this.transport + ", montantPrime: " + this.montantPrime);
+		return sb.toString();
 	}
 
 	public String getStatut() {
@@ -49,12 +56,12 @@ public class MissionVM extends BaseEntity {
 		this.dateDebut = dateDebut;
 	}
 
-	public String getDatefin() {
-		return datefin;
+	public String getDateFin() {
+		return dateFin;
 	}
 
-	public void setDatefin(String datefin) {
-		this.datefin = datefin;
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
 	}
 
 	public String getVilleDepart() {

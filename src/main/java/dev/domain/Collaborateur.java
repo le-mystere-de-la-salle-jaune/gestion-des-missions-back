@@ -22,9 +22,15 @@ public class Collaborateur extends BaseEntity {
 	@OneToMany(mappedBy = "collaborateur", cascade = CascadeType.PERSIST)
 	private List<RoleCollaborateur> roles;
 
-	@Override
-	public CollaborateurVM toVM() {
-		return new CollaborateurVM(this);
+	public Collaborateur() {
+		super();
+	}
+
+	public Collaborateur(CollaborateurVM colabVM) {
+		this.nom = colabVM.getNom();
+		this.prenom = colabVM.getPrenom();
+		this.email = colabVM.getEmail();
+		this.motDePasse = "superpass";
 	}
 
 	public String getEmail() {

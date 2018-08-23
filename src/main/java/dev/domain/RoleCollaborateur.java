@@ -19,11 +19,6 @@ public class RoleCollaborateur extends BaseEntity {
 	public RoleCollaborateur() {
 	}
 
-	@Override
-	public BaseEntity toVM() {
-		return this;
-	}
-
 	public RoleCollaborateur(Collaborateur collaborateur, Role role) {
 		this.collaborateur = collaborateur;
 		this.role = role;
@@ -37,11 +32,11 @@ public class RoleCollaborateur extends BaseEntity {
 		this.role = role;
 	}
 
-	public Collaborateur getCollegue() {
+	public Collaborateur getCollaborateur() {
 		return collaborateur;
 	}
 
-	public void setCollegue(Collaborateur collaborateur) {
+	public void setCollaborateur(Collaborateur collaborateur) {
 		this.collaborateur = collaborateur;
 	}
 

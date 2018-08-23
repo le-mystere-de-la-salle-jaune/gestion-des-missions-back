@@ -1,6 +1,6 @@
 package dev;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -86,8 +86,8 @@ public class StartupListener {
 		this.natureMissionRepo.save(nat2);
 
 		Mission mis1 = new Mission();
-		mis1.setDateDebut(LocalDateTime.now());
-		mis1.setDatefin(LocalDateTime.of(2018, 12, 1, 15, 30));
+		mis1.setDateDebut(LocalDate.now());
+		mis1.setDateFin(LocalDate.of(2018, 12, 1));
 		mis1.setMontantPrime(500d);
 		mis1.setStatut(Statut.VALIDEE);
 		mis1.setTransport(Transport.AVION);
@@ -96,8 +96,8 @@ public class StartupListener {
 		this.missionRepo.save(mis1);
 
 		Mission mis2 = new Mission();
-		mis2.setDateDebut(LocalDateTime.now());
-		mis2.setDatefin(LocalDateTime.of(2018, 12, 1, 15, 30));
+		mis2.setDateDebut(LocalDate.now());
+		mis2.setDateFin(LocalDate.of(2018, 12, 1));
 		mis2.setMontantPrime(500d);
 		mis2.setStatut(Statut.VALIDEE);
 		mis2.setTransport(Transport.AVION);

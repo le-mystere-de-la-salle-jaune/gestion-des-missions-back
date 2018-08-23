@@ -3,15 +3,16 @@ package dev.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dev.controller.vm.NatureMissionVM;
 import dev.domain.NatureMission;
 import dev.service.NatureMissionService;
 
 @RestController
 @RequestMapping("/api/natureMission")
-public class NatureMissionApiController extends BaseApiController<NatureMission> {
+public class NatureMissionApiController extends BaseApiController<NatureMission, NatureMissionVM> {
 
 	public NatureMissionApiController(NatureMissionService natureMissionService) {
-		super(natureMissionService, NatureMission.class);
+		super(natureMissionService, NatureMission.class, NatureMissionVM.class);
 	}
 
 }
