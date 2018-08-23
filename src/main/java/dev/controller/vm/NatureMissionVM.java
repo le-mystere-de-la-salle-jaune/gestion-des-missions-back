@@ -35,6 +35,7 @@ public class NatureMissionVM extends BaseVM {
 	public NatureMissionVM(NatureMission natureMission) {
 		this(natureMission.getLibelle(), natureMission.isFacturee(), natureMission.isVersementPrime(),
 				natureMission.getTjm(), natureMission.getPourcentage());
+		this.setId(natureMission.getId());
 	}
 
 	public String getLibelle() {

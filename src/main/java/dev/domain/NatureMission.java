@@ -1,6 +1,9 @@
 package dev.domain;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import dev.controller.vm.NatureMissionVM;
 
@@ -12,6 +15,9 @@ public class NatureMission extends BaseEntity {
 	private boolean versementPrime;
 	private double tjm;
 	private double pourcentage;
+
+	@OneToMany
+	private List<Mission> missions;
 
 	public NatureMission() {
 		super();
@@ -38,6 +44,7 @@ public class NatureMission extends BaseEntity {
 	public NatureMission(NatureMissionVM natureMissionVM) {
 		this(natureMissionVM.getLibelle(), natureMissionVM.isFacturee(), natureMissionVM.isVersementPrime(),
 				natureMissionVM.getTjm(), natureMissionVM.getPourcentage());
+		this.setId(natureMissionVM.getId());
 	}
 
 	public String getLibelle() {

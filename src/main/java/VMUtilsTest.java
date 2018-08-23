@@ -8,6 +8,7 @@ import org.junit.Test;
 import dev.controller.vm.MissionVM;
 import dev.controller.vm.VMUtils;
 import dev.domain.Mission;
+import dev.domain.NatureMission;
 import dev.domain.Statut;
 import dev.domain.Transport;
 
@@ -21,7 +22,7 @@ public class VMUtilsTest {
 	public void setUp() {
 		this.vmUtils = new VMUtils<>(Mission.class, MissionVM.class);
 		this.mission = new Mission(Statut.VALIDEE, LocalDate.now(), LocalDate.of(2018, 12, 1), "Madrid", "Paris",
-				Transport.AVION, 500d);
+				Transport.AVION, 500d, new NatureMission("Prestation dev", true, true, 56, 30));
 		this.mission.setId(1L);
 		this.missionVM = new MissionVM(mission);
 		// System.out.println("@onSetup:\n Mission: " + this.mission +
@@ -40,6 +41,11 @@ public class VMUtilsTest {
 		// System.out.println("@testTransformIntoEntity\nresult: " +
 		// this.vmUtils.transformIntoEntity(this.missionVM));
 		assertThat(this.vmUtils.transformIntoEntity(this.missionVM).equals(this.mission));
+	}
+
+	@Test
+	public void testGetSetters() {
+
 	}
 
 }

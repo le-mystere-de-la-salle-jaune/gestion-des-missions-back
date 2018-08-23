@@ -6,7 +6,7 @@ import dev.domain.Mission;
 import dev.repository.MissionRepo;
 
 @Service
-public class MissionService extends BaseService<Mission/* , MissionVM */> {
+public class MissionService extends BaseService<Mission> {
 
 	public MissionService(MissionRepo missionRepo) {
 		super(missionRepo);

@@ -2,6 +2,8 @@ package dev.controller.vm;
 
 import java.time.format.DateTimeFormatter;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import dev.domain.Mission;
 
 public class MissionVM extends BaseVM {
@@ -12,6 +14,9 @@ public class MissionVM extends BaseVM {
 	private String villeArrivee;
 	private String transport;
 	private Double montantPrime;
+
+	@JsonProperty("nature_mission_id")
+	private Long natureMissionId;
 
 	public MissionVM() {
 	}
@@ -29,6 +34,7 @@ public class MissionVM extends BaseVM {
 		this.villeArrivee = mission.getVilleArrivee();
 		this.transport = mission.getTransport().name();
 		this.montantPrime = mission.getMontantPrime();
+		this.natureMissionId = mission.getNatureMission().getId();
 	}
 
 	@Override
@@ -36,7 +42,8 @@ public class MissionVM extends BaseVM {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{id: " + this.id + ", statut: " + this.statut + ",\ndateDebut: " + this.dateDebut + ", dateFin: "
 				+ this.dateFin + ",\nvilleDepart: " + this.villeDepart + ", villeArrivée: " + this.villeArrivee
-				+ ",\nTransport: " + this.transport + ", montantPrime: " + this.montantPrime);
+				+ ",\nTransport: " + this.transport + ", montantPrime: " + this.montantPrime + ",\nnature_mission: "
+				+ this.natureMissionId);
 		return sb.toString();
 	}
 
@@ -94,6 +101,14 @@ public class MissionVM extends BaseVM {
 
 	public void setMontantPrime(Double montantPrime) {
 		this.montantPrime = montantPrime;
+	}
+
+	public Long getNatureMissionId() {
+		return this.natureMissionId;
+	}
+
+	public void setNatureMissionId(Long natureMissionId) {
+		this.natureMissionId = natureMissionId;
 	}
 
 }

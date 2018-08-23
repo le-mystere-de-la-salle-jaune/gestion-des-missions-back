@@ -27,7 +27,8 @@ public class BaseApiController<T extends BaseEntity, S extends BaseVM> {
 	public BaseApiController(BaseService<T> service, Class<T> entityClass, Class<S> VMClass) {
 		this.service = service;
 		this.entityClass = entityClass;
-		this.vmUtils = new VMUtils<>(entityClass, VMClass);
+		this.vmUtils = new VMUtils<T, S>(entityClass, VMClass, this.service);
+
 	}
 
 	@GetMapping
