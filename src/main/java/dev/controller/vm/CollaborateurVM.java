@@ -8,17 +8,10 @@ import dev.domain.Collaborateur;
 import dev.domain.Role;
 
 /**
-<<<<<<< HEAD
  * Structure modèlisant un collègue servant à communiquer avec l'extérieur (WEB
  * API).
  */
 public class CollaborateurVM extends BaseVM {
-=======
- * Structure modélisant un collaborateur servant à communiquer avec l'extérieur
- * (WEB API).
- */
-public class CollaborateurVM {
->>>>>>> merde
 
 	private String email;
 	private String nom;
@@ -26,11 +19,8 @@ public class CollaborateurVM {
 	private List<Role> roles = new ArrayList<>();
 
 	public CollaborateurVM(Collaborateur col) {
-<<<<<<< HEAD
 		super();
 		this.setId(col.getId());
-=======
->>>>>>> merde
 		this.email = col.getEmail();
 		this.nom = col.getNom();
 		this.prenom = col.getPrenom();
@@ -68,8 +58,4 @@ public class CollaborateurVM {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-<<<<<<< HEAD
-
-=======
->>>>>>> merde
 }

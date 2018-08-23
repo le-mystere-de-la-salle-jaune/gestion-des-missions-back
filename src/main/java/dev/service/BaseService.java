@@ -18,8 +18,6 @@ public abstract class BaseService<T extends BaseEntity> {
 	@Transactional
 	public List<T> list() {
 		return (List<T>) this.repository.findAll();
-		// return (List<T>) list.stream().map(entity ->
-		// entity).collect(Collectors.toList());
 	}
 
 	@Transactional
