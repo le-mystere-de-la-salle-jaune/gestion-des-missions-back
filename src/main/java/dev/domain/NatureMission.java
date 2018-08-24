@@ -1,5 +1,7 @@
 package dev.domain;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 
 import dev.controller.vm.NatureMissionVM;
@@ -12,9 +14,12 @@ public class NatureMission extends BaseEntity {
 	private boolean versementPrime;
 	private double tjm;
 	private double pourcentage;
+	private LocalDate debut;
+	private LocalDate expiration;
 
 	public NatureMission() {
 		super();
+		this.debut = LocalDate.now();
 	}
 
 	public NatureMission(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage) {
@@ -24,6 +29,7 @@ public class NatureMission extends BaseEntity {
 		this.versementPrime = versementPrime;
 		this.tjm = tjm;
 		this.pourcentage = pourcentage;
+		this.debut = LocalDate.now();
 	}
 
 	public NatureMission(String libelle) {
@@ -33,11 +39,13 @@ public class NatureMission extends BaseEntity {
 		this.versementPrime = false;
 		this.tjm = 0;
 		this.pourcentage = 0;
+		this.debut = LocalDate.now();
 	}
 
 	public NatureMission(NatureMissionVM natureMissionVM) {
 		this(natureMissionVM.getLibelle(), natureMissionVM.isFacturee(), natureMissionVM.isVersementPrime(),
 				natureMissionVM.getTjm(), natureMissionVM.getPourcentage());
+		this.setId(natureMissionVM.getId());
 	}
 
 	public String getLibelle() {
@@ -78,6 +86,22 @@ public class NatureMission extends BaseEntity {
 
 	public void setPourcentage(double pourcentage) {
 		this.pourcentage = pourcentage;
+	}
+
+	public LocalDate getDebut() {
+		return debut;
+	}
+
+	public void setDebut(LocalDate debut) {
+		this.debut = debut;
+	}
+
+	public LocalDate getExpiration() {
+		return expiration;
+	}
+
+	public void setExpiration(LocalDate expiration) {
+		this.expiration = expiration;
 	}
 
 }

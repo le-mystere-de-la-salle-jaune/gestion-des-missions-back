@@ -9,7 +9,7 @@ import dev.repository.BaseRepository;
 
 public abstract class BaseService<T extends BaseEntity> {
 
-	private BaseRepository<T> repository;
+	protected BaseRepository<T> repository;
 
 	public BaseService(BaseRepository<T> repository) {
 		this.repository = repository;
