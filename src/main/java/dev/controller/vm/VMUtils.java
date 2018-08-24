@@ -17,6 +17,10 @@ public class VMUtils<T extends BaseEntity, S extends BaseVM> {
 		this.service = service;
 	}
 
+	public VMUtils() {
+		super();
+	}
+
 	public BaseVM transformIntoVM(BaseEntity entity) {
 		try {
 			return this.VMClass.getConstructor(this.entityClass).newInstance(entity);
@@ -27,13 +31,11 @@ public class VMUtils<T extends BaseEntity, S extends BaseVM> {
 		}
 	}
 
-	// TODO A TESTER
 	public BaseEntity transformIntoEntity(BaseVM vm) {
 		try {
 			if (service == null) {
 				return this.entityClass.getConstructor(this.VMClass).newInstance(vm);
 			} else {
-				System.out.println(this.service.findById(vm.getId()));
 				return this.service.findById(vm.getId());
 			}
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
@@ -42,4 +44,29 @@ public class VMUtils<T extends BaseEntity, S extends BaseVM> {
 			return null;
 		}
 	}
+
+	public Class<T> getEntityClass() {
+		return entityClass;
+	}
+
+	public void setEntityClass(Class<T> entityClass) {
+		this.entityClass = entityClass;
+	}
+
+	public Class<S> getVMClass() {
+		return VMClass;
+	}
+
+	public void setVMClass(Class<S> vMClass) {
+		VMClass = vMClass;
+	}
+
+	public BaseService<T> getService() {
+		return service;
+	}
+
+	public void setService(BaseService<T> service) {
+		this.service = service;
+	}
+
 }
