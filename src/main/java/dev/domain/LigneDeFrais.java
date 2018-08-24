@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import dev.controller.vm.LigneDeFraisVM;
+
 @Entity
 @Table(name = "ligne_de_frais")
 public class LigneDeFrais extends BaseEntity {
@@ -26,6 +28,13 @@ public class LigneDeFrais extends BaseEntity {
 	 */
 	public LigneDeFrais() {
 		super();
+	}
+
+	public LigneDeFrais(LigneDeFraisVM vm) {
+		super();
+		this.date = vm.getDate();
+		this.nature = vm.getNature();
+		this.montant = vm.getMontant();
 	}
 
 	/**

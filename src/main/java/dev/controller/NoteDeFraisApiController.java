@@ -4,14 +4,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.vm.NoteDeFraisVM;
+import dev.domain.BaseEntity;
 import dev.domain.NoteDeFrais;
 import dev.service.NoteDeFraisService;
 
 @RestController
 @RequestMapping("/api/noteDeFrais")
-public class NoteDeFraisApiController extends BaseApiController<NoteDeFrais, NoteDeFraisVM> {
+public class NoteDeFraisApiController extends BaseApiController<NoteDeFrais, BaseEntity, NoteDeFraisVM> {
 	public NoteDeFraisApiController(NoteDeFraisService noteDeFraisService) {
-		super(noteDeFraisService, NoteDeFrais.class, NoteDeFraisVM.class);
+		super(noteDeFraisService, NoteDeFrais.class, NoteDeFraisVM.class, null);
 	}
 
 	// private NoteDeFraisService noteDeFraisService;

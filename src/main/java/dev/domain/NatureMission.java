@@ -50,6 +50,12 @@ public class NatureMission extends BaseEntity {
 		this.setId(natureMissionVM.getId());
 	}
 
+	@Override
+	public String toString() {
+		return "NatureMission [libelle=" + libelle + ", facturee=" + facturee + ", versementPrime=" + versementPrime
+				+ ", tjm=" + tjm + ", pourcentage=" + pourcentage + ", missions=" + missions + "]";
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}

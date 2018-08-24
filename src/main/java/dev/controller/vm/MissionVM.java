@@ -42,7 +42,7 @@ public class MissionVM extends BaseVM {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{id: " + this.id + ", statut: " + this.statut + ",\ndateDebut: " + this.dateDebut + ", dateFin: "
 				+ this.dateFin + ",\nvilleDepart: " + this.villeDepart + ", villeArrivée: " + this.villeArrivee
-				+ ",\nTransport: " + this.transport + ", montantPrime: " + this.montantPrime + ",\nnature_mission: "
+				+ ",\nTransport: " + this.transport + ", montantPrime: " + this.montantPrime + ",\nnature_mission_id: "
 				+ this.natureMissionId);
 		return sb.toString();
 	}

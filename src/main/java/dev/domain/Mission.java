@@ -1,12 +1,16 @@
 package dev.domain;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import dev.controller.vm.MissionVM;
+import dev.service.BaseService;
 
 @Entity
 public class Mission extends BaseEntity {
@@ -54,33 +58,39 @@ public class Mission extends BaseEntity {
 		this.statut = statut;
 	}
 
-	/*
-	 * public Mission(MissionVM missionVM) { super(); this.id =
-	 * missionVM.getId(); this.statut = Statut.valueOf(missionVM.getStatut());
-	 * 
-	 * DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	 * DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	 * if (missionVM.getDateDebut().contains("/")) { this.dateDebut =
-	 * LocalDate.parse(missionVM.getDateDebut(), formatter); } else {
-	 * this.dateDebut = LocalDate.parse(missionVM.getDateDebut(), formatter2); }
-	 * if (missionVM.getDateFin().contains("/")) { this.dateFin =
-	 * LocalDate.parse(missionVM.getDateFin(), formatter); } else { this.dateFin
-	 * = LocalDate.parse(missionVM.getDateFin(), formatter2); } this.villeDepart
-	 * = missionVM.getVilleDepart(); this.villeArrivee =
-	 * missionVM.getVilleArrivee(); this.transport =
-	 * Transport.valueOf(missionVM.getTransport()); this.montantPrime =
-	 * missionVM.getMontantPrime();
-	 * 
-	 * // TODO Compléter la nature mission pour qu'elle corresponde à une vraie
-	 * // nature (en tapant dans la BD à partir e son id) this.natureMission =
-	 * new MissionService().findById(id); }
-	 */
+	public Mission(MissionVM missionVM, BaseService<NatureMission> service) {
+		super();
+		this.id = missionVM.getId();
+		this.statut = Statut.valueOf(missionVM.getStatut());
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		if (missionVM.getDateDebut().contains("/")) {
+			this.dateDebut = LocalDate.parse(missionVM.getDateDebut(), formatter);
+		} else {
+			this.dateDebut = LocalDate.parse(missionVM.getDateDebut(), formatter2);
+		}
+		if (missionVM.getDateFin().contains("/")) {
+			this.dateFin = LocalDate.parse(missionVM.getDateFin(), formatter);
+		} else {
+			this.dateFin = LocalDate.parse(missionVM.getDateFin(), formatter2);
+		}
+
+		this.villeDepart = missionVM.getVilleDepart();
+		this.villeArrivee = missionVM.getVilleArrivee();
+		this.transport = Transport.valueOf(missionVM.getTransport());
+		this.montantPrime = missionVM.getMontantPrime();
+		// System.out.println("\nId de missionVM: " + missionVM.getId());
+		// System.out.println("\natureMissionService: " + natureMissionService);
+		this.natureMission = service.findById(missionVM.getNatureMissionId());
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("{id: " + this.id + ", statut: " + this.statut.name() + ",\ndateDebut: " + this.dateDebut
 				+ ", dateFin: " + this.dateFin + ",\nvilleDepart: " + this.villeDepart + ", villeArrivée: "
-				+ this.villeArrivee + ",\nTransport: " + this.transport + ", montantPrime: " + this.montantPrime);
+				+ this.villeArrivee + ",\nTransport: " + this.transport + ", montantPrime: " + this.montantPrime
+				+ ", Nature de mission: " + this.natureMission.getLibelle());
 		return sb.toString();
 	}
 
@@ -147,4 +157,5 @@ public class Mission extends BaseEntity {
 	public void setNatureMission(NatureMission natureMission) {
 		this.natureMission = natureMission;
 	}
+
 }

@@ -5,14 +5,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import dev.controller.vm.LigneDeFraisVM;
 import dev.domain.LigneDeFrais;
+import dev.domain.NoteDeFrais;
 import dev.service.LigneDeFraisService;
+import dev.service.NoteDeFraisService;
 
 @RestController
 @RequestMapping("/api/ligneDeFrais")
-public class LigneDeFraisApiController extends BaseApiController<LigneDeFrais, LigneDeFraisVM> {
+public class LigneDeFraisApiController extends BaseApiController<LigneDeFrais, NoteDeFrais, LigneDeFraisVM> {
 
-	public LigneDeFraisApiController(LigneDeFraisService ligneDeFraisService) {
-		super(ligneDeFraisService, LigneDeFrais.class, LigneDeFraisVM.class);
+	public LigneDeFraisApiController(LigneDeFraisService ligneDeFraisService, NoteDeFraisService noteDeFraisService) {
+		super(ligneDeFraisService, LigneDeFrais.class, LigneDeFraisVM.class, noteDeFraisService);
 	}
 
 	// private LigneDeFraisService ligneDeFraisService;

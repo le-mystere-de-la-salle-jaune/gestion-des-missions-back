@@ -110,6 +110,7 @@ public class StartupListener {
 		mis1.setTransport(Transport.AVION);
 		mis1.setVilleDepart("Madrid");
 		mis1.setVilleArrivee("Paris");
+		mis1.setNatureMission(nat1);
 		this.missionRepo.save(mis1);
 
 		Mission mis2 = new Mission();
@@ -120,6 +121,7 @@ public class StartupListener {
 		mis2.setTransport(Transport.AVION);
 		mis2.setVilleDepart("Grenade");
 		mis2.setVilleArrivee("Bagdad");
+		mis2.setNatureMission(nat2);
 		this.missionRepo.save(mis2);
 
 		// Création d'une note de frais comportant deux lignes de frais
