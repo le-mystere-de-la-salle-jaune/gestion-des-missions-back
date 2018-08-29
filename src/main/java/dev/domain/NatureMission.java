@@ -1,6 +1,7 @@
 package dev.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -48,6 +49,7 @@ public class NatureMission extends BaseEntity {
 				natureMissionVM.getTjm(), natureMissionVM.getPourcentage(), natureMissionVM.getDateDebutValidite(),
 				natureMissionVM.getDateFinValidite());
 		this.setId(natureMissionVM.getId());
+		this.missions = new ArrayList<>();
 	}
 
 	@Override

@@ -1,12 +1,15 @@
 package dev.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import dev.controller.vm.NoteDeFraisVM;
 
 @Entity
 @Table(name = "note_de_frais")
@@ -26,6 +29,13 @@ public class NoteDeFrais extends BaseEntity {
 		super();
 	}
 
+	public NoteDeFrais(LocalDate dateCreation, Double montantTotal) {
+		super();
+		this.dateCreation = dateCreation;
+		this.montantTotal = montantTotal;
+		this.lignesDeFrais = new ArrayList<>();
+	}
+
 	/**
 	 * Constructeur
 	 * 
@@ -34,10 +44,14 @@ public class NoteDeFrais extends BaseEntity {
 	 * @param lignesDeFrais
 	 */
 	public NoteDeFrais(LocalDate dateCreation, Double montantTotal, List<LigneDeFrais> lignesDeFrais) {
-		super();
-		this.dateCreation = dateCreation;
-		this.montantTotal = montantTotal;
+		this(dateCreation, montantTotal);
 		this.lignesDeFrais = lignesDeFrais;
+	}
+
+	public NoteDeFrais(NoteDeFraisVM vm) {
+		this(vm.getDateCreation(), vm.getMontantTotal());
+		this.setId(vm.getId());
+		this.lignesDeFrais = new ArrayList<>();
 	}
 
 	/**

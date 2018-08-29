@@ -7,7 +7,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import dev.controller.vm.LigneDeFraisVM;
+import dev.service.BaseService;
 
 @Entity
 @Table(name = "ligne_de_frais")
@@ -20,6 +23,7 @@ public class LigneDeFrais extends BaseEntity {
 	private Double montant;
 
 	@ManyToOne
+	@JsonProperty("note_de_frais_id")
 	@JoinColumn(name = "note_de_frais_id")
 	private NoteDeFrais noteDeFrais;
 
@@ -30,11 +34,12 @@ public class LigneDeFrais extends BaseEntity {
 		super();
 	}
 
-	public LigneDeFrais(LigneDeFraisVM vm) {
+	public LigneDeFrais(LigneDeFraisVM vm, BaseService<NoteDeFrais> service) {
 		super();
 		this.date = vm.getDate();
 		this.nature = vm.getNature();
 		this.montant = vm.getMontant();
+		this.noteDeFrais = service.findById(vm.getNoteDeFraisId());
 	}
 
 	/**
