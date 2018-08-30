@@ -1,5 +1,7 @@
 package dev.controller.vm;
 
+import java.time.LocalDate;
+
 import dev.domain.NatureMission;
 
 public class NatureMissionVM extends BaseVM {
@@ -9,6 +11,8 @@ public class NatureMissionVM extends BaseVM {
 	private boolean versementPrime;
 	private double tjm;
 	private double pourcentage;
+	private LocalDate dateDebutValidite;
+	private LocalDate dateFinValidite;
 
 	public NatureMissionVM() {
 		super();
@@ -35,6 +39,9 @@ public class NatureMissionVM extends BaseVM {
 	public NatureMissionVM(NatureMission natureMission) {
 		this(natureMission.getLibelle(), natureMission.isFacturee(), natureMission.isVersementPrime(),
 				natureMission.getTjm(), natureMission.getPourcentage());
+		this.setId(natureMission.getId());
+		this.setDateDebutValidite(natureMission.getDateDebutValidite());
+		this.setDateFinValidite(natureMission.getDateFinValidite());
 	}
 
 	public String getLibelle() {
@@ -75,6 +82,22 @@ public class NatureMissionVM extends BaseVM {
 
 	public void setPourcentage(double pourcentage) {
 		this.pourcentage = pourcentage;
+	}
+
+	public LocalDate getDateDebutValidite() {
+		return dateDebutValidite;
+	}
+
+	public void setDateDebutValidite(LocalDate debut) {
+		this.dateDebutValidite = debut;
+	}
+
+	public LocalDate getDateFinValidite() {
+		return dateFinValidite;
+	}
+
+	public void setDateFinValidite(LocalDate expiration) {
+		this.dateFinValidite = expiration;
 	}
 
 }
