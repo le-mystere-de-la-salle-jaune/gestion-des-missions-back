@@ -19,7 +19,7 @@ public class NatureMissionService
 	@Override
 	@Transactional
 	public void delete(NatureMission t) {
-		t.setExpiration(LocalDate.now());
+		t.setDateFinValidite(LocalDate.now());
 		this.update(t);
 	}
 
@@ -27,7 +27,7 @@ public class NatureMissionService
 	@Transactional
 	public void delete(Long id) {
 		NatureMission t = this.findById(id);
-		t.setExpiration(LocalDate.now());
+		t.setDateFinValidite(LocalDate.now());
 		this.update(t);
 	}
 	

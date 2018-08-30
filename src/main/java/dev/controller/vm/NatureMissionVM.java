@@ -41,7 +41,7 @@ public class NatureMissionVM extends BaseVM {
 				natureMission.getTjm(), natureMission.getPourcentage());
 		this.setId(natureMission.getId());
 		this.setDebut(natureMission.getDebut());
-		this.setExpiration(natureMission.getExpiration());
+		this.setExpiration(natureMission.getDateFinValidite());
 	}
 
 	public String getLibelle() {

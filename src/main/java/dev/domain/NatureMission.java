@@ -14,12 +14,12 @@ public class NatureMission extends BaseEntity {
 	private boolean versementPrime;
 	private double tjm;
 	private double pourcentage;
-	private LocalDate debut;
-	private LocalDate expiration;
+	private LocalDate dateDebutValidite;
+	private LocalDate dateFinValidite;
 
 	public NatureMission() {
 		super();
-		this.debut = LocalDate.now();
+		this.dateDebutValidite = LocalDate.now();
 	}
 
 	public NatureMission(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage) {
@@ -29,7 +29,7 @@ public class NatureMission extends BaseEntity {
 		this.versementPrime = versementPrime;
 		this.tjm = tjm;
 		this.pourcentage = pourcentage;
-		this.debut = LocalDate.now();
+		this.dateDebutValidite = LocalDate.now();
 	}
 
 	public NatureMission(String libelle) {
@@ -39,7 +39,7 @@ public class NatureMission extends BaseEntity {
 		this.versementPrime = false;
 		this.tjm = 0;
 		this.pourcentage = 0;
-		this.debut = LocalDate.now();
+		this.dateDebutValidite = LocalDate.now();
 	}
 
 	public NatureMission(NatureMissionVM natureMissionVM) {
@@ -89,19 +89,19 @@ public class NatureMission extends BaseEntity {
 	}
 
 	public LocalDate getDebut() {
-		return debut;
+		return dateDebutValidite;
 	}
 
 	public void setDebut(LocalDate debut) {
-		this.debut = debut;
+		this.dateDebutValidite = debut;
 	}
 
-	public LocalDate getExpiration() {
-		return expiration;
+	public LocalDate getDateFinValidite() {
+		return dateFinValidite;
 	}
 
-	public void setExpiration(LocalDate expiration) {
-		this.expiration = expiration;
+	public void setDateFinValidite(LocalDate expiration) {
+		this.dateFinValidite = expiration;
 	}
 
 }
