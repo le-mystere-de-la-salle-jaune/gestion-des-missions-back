@@ -65,8 +65,9 @@ public class BaseApiController<T extends BaseEntity, U extends BaseEntity, S ext
 			return ResponseEntity.status(HttpStatus.OK).body(
 					"L'objet de type " + this.entityClass.getSimpleName() + " dont l'id est " + id + " a été supprimé");
 		} else {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Aucun objet de type "
-					+ this.entityClass.getSimpleName() + " n'a été trouvé en base. Rien n'a été supprimé.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("Aucun objet de type " + this.entityClass.getSimpleName() + "avec l'id " + id
+							+ " n'a été trouvé en base. Rien n'a été supprimé.");
 		}
 	}
 
@@ -82,10 +83,6 @@ public class BaseApiController<T extends BaseEntity, U extends BaseEntity, S ext
 					.body("Aucun Objet de type " + this.entityClass.getSimpleName() + "trouvé avec l'id " + id
 							+ ". Aucune modification n'a été effectuée.");
 		}
-	}
-
-	protected BaseService<T> getService() {
-		return this.serviceT;
 	}
 
 }

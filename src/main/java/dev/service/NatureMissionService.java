@@ -14,7 +14,7 @@ public class NatureMissionService extends BaseService<NatureMission> {
 	public NatureMissionService(NatureMissionRepo natureMissionRepo) {
 		super(natureMissionRepo);
 	}
-	
+
 	@Override
 	@Transactional
 	public void delete(NatureMission t) {
@@ -29,5 +29,4 @@ public class NatureMissionService extends BaseService<NatureMission> {
 		t.setDateFinValidite(LocalDate.now());
 		this.update(t);
 	}
-	
 }
