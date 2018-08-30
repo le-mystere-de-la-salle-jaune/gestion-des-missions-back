@@ -11,8 +11,8 @@ public class NatureMissionVM extends BaseVM {
 	private boolean versementPrime;
 	private double tjm;
 	private double pourcentage;
-	private LocalDate debut;
-	private LocalDate expiration;
+	private LocalDate dateDebutValidite;
+	private LocalDate dateFinValidite;
 
 	public NatureMissionVM() {
 		super();
@@ -40,8 +40,8 @@ public class NatureMissionVM extends BaseVM {
 		this(natureMission.getLibelle(), natureMission.isFacturee(), natureMission.isVersementPrime(),
 				natureMission.getTjm(), natureMission.getPourcentage());
 		this.setId(natureMission.getId());
-		this.setDebut(natureMission.getDebut());
-		this.setExpiration(natureMission.getDateFinValidite());
+		this.setDateDebutValidite(natureMission.getDateDebutValidite());
+		this.setDateFinValidite(natureMission.getDateFinValidite());
 	}
 
 	public String getLibelle() {
@@ -84,20 +84,20 @@ public class NatureMissionVM extends BaseVM {
 		this.pourcentage = pourcentage;
 	}
 
-	public LocalDate getDebut() {
-		return debut;
+	public LocalDate getDateDebutValidite() {
+		return dateDebutValidite;
 	}
 
-	public void setDebut(LocalDate debut) {
-		this.debut = debut;
+	public void setDateDebutValidite(LocalDate debut) {
+		this.dateDebutValidite = debut;
 	}
 
-	public LocalDate getExpiration() {
-		return expiration;
+	public LocalDate getDateFinValidite() {
+		return dateFinValidite;
 	}
 
-	public void setExpiration(LocalDate expiration) {
-		this.expiration = expiration;
+	public void setDateFinValidite(LocalDate expiration) {
+		this.dateFinValidite = expiration;
 	}
 
 }

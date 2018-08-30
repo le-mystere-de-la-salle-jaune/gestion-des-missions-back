@@ -88,11 +88,11 @@ public class NatureMission extends BaseEntity {
 		this.pourcentage = pourcentage;
 	}
 
-	public LocalDate getDebut() {
+	public LocalDate getDateDebutValidite() {
 		return dateDebutValidite;
 	}
 
-	public void setDebut(LocalDate debut) {
+	public void setDateDebutValidite(LocalDate debut) {
 		this.dateDebutValidite = debut;
 	}
 
