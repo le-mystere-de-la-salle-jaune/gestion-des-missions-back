@@ -20,8 +20,8 @@ public class VMUtils<T extends BaseEntity, S extends BaseVM> {
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 
 	public BaseEntity transformIntoEntity(BaseVM vm) {
@@ -30,7 +30,7 @@ public class VMUtils<T extends BaseEntity, S extends BaseVM> {
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 }
