@@ -31,7 +31,7 @@ public class StartupListener {
 	private String appVersion;
 	private VersionRepo versionRepo;
 	private PasswordEncoder passwordEncoder;
-	private CollaborateurRepo collegueRepo;
+	private CollaborateurRepo collaborateurRepo;
 	private NatureMissionRepo natureMissionRepo;
 	private MissionRepo missionRepo;
 
@@ -41,7 +41,7 @@ public class StartupListener {
 		this.appVersion = appVersion;
 		this.versionRepo = versionRepo;
 		this.passwordEncoder = passwordEncoder;
-		this.collegueRepo = collegueRepo;
+		this.collaborateurRepo = collegueRepo;
 		this.natureMissionRepo = natureMissionRepo;
 		this.missionRepo = missionRepo;
 	}
@@ -59,7 +59,7 @@ public class StartupListener {
 		col1.setMotDePasse(passwordEncoder.encode("superpass"));
 		col1.setRoles(Arrays.asList(new RoleCollaborateur(col1, Role.ROLE_ADMINISTRATEUR),
 				new RoleCollaborateur(col1, Role.ROLE_UTILISATEUR)));
-		this.collegueRepo.save(col1);
+		this.collaborateurRepo.save(col1);
 
 		Collaborateur col2 = new Collaborateur();
 		col2.setNom("User");
@@ -67,7 +67,15 @@ public class StartupListener {
 		col2.setEmail("user@dev.fr");
 		col2.setMotDePasse(passwordEncoder.encode("superpass"));
 		col2.setRoles(Arrays.asList(new RoleCollaborateur(col2, Role.ROLE_UTILISATEUR)));
-		this.collegueRepo.save(col2);
+		this.collaborateurRepo.save(col2);
+
+		Collaborateur col3 = new Collaborateur();
+		col3.setNom("Manager");
+		col3.setPrenom("MANAGER");
+		col3.setEmail("manager@dev.fr");
+		col3.setMotDePasse(passwordEncoder.encode("superpass"));
+		col3.setRoles(Arrays.asList(new RoleCollaborateur(col3, Role.ROLE_MANAGER)));
+		this.collaborateurRepo.save(col3);
 
 		NatureMission nat1 = new NatureMission();
 		nat1.setFacturee(true);
