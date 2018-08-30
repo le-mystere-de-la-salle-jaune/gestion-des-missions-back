@@ -23,29 +23,25 @@ public class NatureMission extends BaseEntity {
 	}
 
 	public NatureMission(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage) {
-		super();
+		this();
 		this.libelle = libelle;
 		this.facturee = facturee;
 		this.versementPrime = versementPrime;
 		this.tjm = tjm;
 		this.pourcentage = pourcentage;
-		this.dateDebutValidite = LocalDate.now();
 	}
 
-	public NatureMission(String libelle) {
-		super();
-		this.libelle = libelle;
-		this.facturee = false;
-		this.versementPrime = false;
-		this.tjm = 0;
-		this.pourcentage = 0;
-		this.dateDebutValidite = LocalDate.now();
+	public NatureMission(String libelle, boolean facturee, boolean versementPrime, double tjm, double pourcentage,
+			LocalDate dateDebutValidite, LocalDate dateFinValidite) {
+		this(libelle, facturee, versementPrime, tjm, pourcentage);
+		this.dateDebutValidite = dateDebutValidite;
+		this.dateFinValidite = dateFinValidite;
 	}
 
 	public NatureMission(NatureMissionVM natureMissionVM) {
 		this(natureMissionVM.getLibelle(), natureMissionVM.isFacturee(), natureMissionVM.isVersementPrime(),
-				natureMissionVM.getTjm(), natureMissionVM.getPourcentage());
-		this.setId(natureMissionVM.getId());
+				natureMissionVM.getTjm(), natureMissionVM.getPourcentage(), natureMissionVM.getDateDebutValidite(),
+				natureMissionVM.getDateFinValidite());
 	}
 
 	public String getLibelle() {
