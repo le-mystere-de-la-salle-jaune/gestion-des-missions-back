@@ -44,24 +44,17 @@ public class VMUtils<T extends BaseEntity, U extends BaseEntity, S extends BaseV
 						.newInstance(vm);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return null;
 			}
 		} else {
 			try {
 				return entityConstructor.newInstance(vm, service);
 			} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
 					| InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				return null;
 			}
-<<<<<<< HEAD
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
-				| NoSuchMethodException | SecurityException e) {
-			e.printStackTrace();
-			return null;
-=======
->>>>>>> Lourdes correction de VMUtils
 		}
 	}
 	/*
