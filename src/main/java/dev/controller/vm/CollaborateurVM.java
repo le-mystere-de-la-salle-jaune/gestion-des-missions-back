@@ -58,5 +58,4 @@ public class CollaborateurVM extends BaseVM {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
 }

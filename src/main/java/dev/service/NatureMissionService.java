@@ -9,8 +9,7 @@ import dev.domain.NatureMission;
 import dev.repository.NatureMissionRepo;
 
 @Service
-public class NatureMissionService
-		extends BaseService<NatureMission/* , NatureMissionVM */> {
+public class NatureMissionService extends BaseService<NatureMission> {
 
 	public NatureMissionService(NatureMissionRepo natureMissionRepo) {
 		super(natureMissionRepo);

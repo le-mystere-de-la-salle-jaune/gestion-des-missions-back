@@ -1,8 +1,11 @@
 package dev.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 import dev.controller.vm.NatureMissionVM;
 
@@ -16,6 +19,9 @@ public class NatureMission extends BaseEntity {
 	private double pourcentage;
 	private LocalDate dateDebutValidite;
 	private LocalDate dateFinValidite;
+
+	@OneToMany
+	private List<Mission> missions;
 
 	public NatureMission() {
 		super();
@@ -42,6 +48,14 @@ public class NatureMission extends BaseEntity {
 		this(natureMissionVM.getLibelle(), natureMissionVM.isFacturee(), natureMissionVM.isVersementPrime(),
 				natureMissionVM.getTjm(), natureMissionVM.getPourcentage(), natureMissionVM.getDateDebutValidite(),
 				natureMissionVM.getDateFinValidite());
+		this.setId(natureMissionVM.getId());
+		this.missions = new ArrayList<>();
+	}
+
+	@Override
+	public String toString() {
+		return "NatureMission [libelle=" + libelle + ", facturee=" + facturee + ", versementPrime=" + versementPrime
+				+ ", tjm=" + tjm + ", pourcentage=" + pourcentage + ", missions=" + missions + "]";
 	}
 
 	public String getLibelle() {
