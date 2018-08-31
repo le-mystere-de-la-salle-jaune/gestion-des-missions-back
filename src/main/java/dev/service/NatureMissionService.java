@@ -14,13 +14,12 @@ public class NatureMissionService extends BaseService<NatureMission> {
 	public NatureMissionService(NatureMissionRepo natureMissionRepo) {
 		super(natureMissionRepo);
 	}
-
-	@Override
-	@Transactional
-	public void delete(NatureMission t) {
-		t.setDateFinValidite(LocalDate.now());
-		this.update(t);
-	}
+	/*
+	 * @Override
+	 * 
+	 * @Transactional public void delete(NatureMission t) {
+	 * t.setDateFinValidite(LocalDate.now()); this.update(t); }
+	 */
 
 	@Override
 	@Transactional
