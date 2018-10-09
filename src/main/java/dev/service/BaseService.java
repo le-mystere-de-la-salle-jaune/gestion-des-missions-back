@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import dev.domain.BaseEntity;
 import dev.repository.BaseRepository;
 
+@Transactional(readOnly=true)
 public abstract class BaseService<T extends BaseEntity> {
 
 	protected BaseRepository<T> repository;
@@ -25,12 +26,12 @@ public abstract class BaseService<T extends BaseEntity> {
 		return this.repository.findById(id).orElse(null);
 	}
 
-	@Transactional
+	@Transactional(readOnly=false)
 	public void save(T t) {
 		this.repository.save(t);
 	}
 
-	@Transactional
+	@Transactional(readOnly=false)
 	public void update(T t) {
 		if (this.exist(t.getId())) {
 			repository.save(t);
@@ -39,12 +40,12 @@ public abstract class BaseService<T extends BaseEntity> {
 		}
 	}
 
-	@Transactional
+	@Transactional(readOnly=false)
 	public void delete(T t) {
 		this.repository.delete(t);
 	}
 
-	@Transactional
+	@Transactional(readOnly=false)
 	public void delete(Long id) {
 		this.repository.delete(this.findById(id));
 	}
